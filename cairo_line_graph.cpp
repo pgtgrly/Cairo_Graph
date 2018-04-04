@@ -29,7 +29,7 @@ float getmax(vector<float> vec){ //Gives maximum element of an array
 	return max;
 }
 
-void linegraph(vector<float> xcoordi, vector<float> ycoordi,int Xsize=540,int Ysize=540,int Margin_size=20) //gives linegraph for Ist Quadrant
+void linegraph(vector<float> xcoordi, vector<float> ycoordi,int Xsize=540,int Ysize=540,int Margin_size=20) //gives linegraph for Ist Quadrant This acts as function of Pyplot api in MatPlotlib
 {
 	sort_coordinates(xcoordi,ycoordi);
 	cairo_surface_t *surface;
@@ -43,7 +43,7 @@ void linegraph(vector<float> xcoordi, vector<float> ycoordi,int Xsize=540,int Ys
 	cairo_rectangle (cr, 0, 0,Xsize,Ysize);
 	cairo_fill (cr);
 
-	//Create axes
+	//Create axes. Acts as axes instance of artist class
 	cairo_set_source_rgb (cr, 0, 0, 0);
 	cairo_move_to (cr, Margin_size, 0);
 	cairo_line_to (cr, Margin_size, Ysize);
@@ -54,11 +54,11 @@ void linegraph(vector<float> xcoordi, vector<float> ycoordi,int Xsize=540,int Ys
 	float origin_y=Ysize-Margin_size;
 	float current_x=origin_x;
 	float current_y=origin_y;
-	float y_scaling_factor=(Ysize-2*Margin_size)/getmax(ycoordi);
-	float x_scaling_factor=(Xsize-2*Margin_size)/getmax(xcoordi);
+	float y_scaling_factor=(Ysize-2*Margin_size)/getmax(ycoordi); // these act like the transforms
+	float x_scaling_factor=(Xsize-2*Margin_size)/getmax(xcoordi); // in the artist layer of matplotlib
 
 	int i;
-	// draw notches on axes
+	// draw notches on axes. Acts as the tick instance in artist layer of MatPlotLib
 	for(i=1;i<=10;i++){
 		cairo_move_to(cr,current_x+(i*(Xsize-2*Margin_size)/10),current_y-5);
 		cairo_line_to(cr,current_x+(i*(Xsize-2*Margin_size)/10),current_y+5);
@@ -69,7 +69,7 @@ void linegraph(vector<float> xcoordi, vector<float> ycoordi,int Xsize=540,int Ys
 	current_x=origin_x;
 	current_y=origin_y;
 
-	//draw line graph
+	//draw line graph. Acts as curve instance of artist layer in MatPlotLib
 	for(i=0;i<xcoordi.size();i++)
 	{
 		cairo_move_to(cr,current_x,current_y);
