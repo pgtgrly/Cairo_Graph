@@ -4,6 +4,7 @@ Scripts for graphs in C++ using Cairo graphics Library (www.cairographics.org)
 # Build
 ```sh
 sudo apt-get install libcairo2-dev
+git clone https://github.com/pgtgrly/Cairo_Graph
 cd Cairo_Graph
 g++ cairo_line_graph.cpp -o cairo_line_graph $(pkg-config --cflags --libs cairo)
 ```
